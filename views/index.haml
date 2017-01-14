@@ -5,6 +5,7 @@
         %label.col-sm-2.control-label{:for => "inputDate"} Date:
         .col-sm-10
           %input#inputDate.form-control{:value => "#{Date.today.strftime('%d-%m-%Y')}",:placeholder => "DD-MM-YYYY", :type => "datetime"}/
+          %small You can change this date to anytime in the last 3 months, but we're assuming you want today's rate.
       .form-group
         %label.col-sm-2.control-label{:for => "inputAmount"} Amount:
         .col-sm-10
