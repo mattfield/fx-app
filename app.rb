@@ -5,13 +5,11 @@ require 'exchange_rate'
 ENV["XML_FEED_PATH"] = 'public/data/feed.xml'
 
 def rates_by_date(date = Date.today)
-  ECBQuote.new({ 'date' => date, 'from' => 'EUR', 'to' => 'EUR'}).rates
+  ExchangeRate.all_rates_at(date = Date.today)
 end
 
 def rates_all
-  rates = []
-  ECBFeed.new().each { |rate| rates << rate }
-  rates
+  ExchangeRate.all_rates
 end
 
 def round value
@@ -37,9 +35,10 @@ get '/rates/:date' do
 end
 
 get '/convert/?' do
+  date = params['date'] ? params['date'] : Date.today
   amount = params['amount'].to_f
   from = params['from']
   to = params['to']
 
-  (round(amount * ExchangeRate.at(Date.today, "#{from}", "#{to}"))).to_s
+  (round(amount * ExchangeRate.at(date, "#{from}", "#{to}"))).to_s
 end

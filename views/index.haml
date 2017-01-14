@@ -2,29 +2,42 @@
   .col-md-6
     %form.form-horizontal
       .form-group
-        %label.col-sm-2.control-label{:for => "inputEmail"} Date:
+        %label.col-sm-2.control-label{:for => "inputDate"} Date:
         .col-sm-10
-          %input#inputEmail.form-control{:value => "#{Date.today.strftime('%d-%m-%Y')}",:placeholder => "DD-MM-YYYY", :type => "datetime"}/
+          %input#inputDate.form-control{:value => "#{Date.today.strftime('%d-%m-%Y')}",:placeholder => "DD-MM-YYYY", :type => "datetime"}/
       .form-group
         %label.col-sm-2.control-label{:for => "inputAmount"} Amount:
         .col-sm-10
-          %input#inputAmount.form-control{:placeholder => "Amount", :type => "text"}/
+          %input#inputAmount.form-control{:placeholder => "Amount", :type => "text", :value => "1"}/
   .col-md-6
     %form.form-horizontal
       .form-group
         %label.col-sm-2.control-label{:for => "inputFrom"} From:
         .col-sm-10
           %select#inputFrom.form-control
+            %option EUR
             = haml :currency_list, :layout => false, :locals => locals
       .form-group
         %label.col-sm-2.control-label{:for => "inputTo"} To:
         .col-sm-10
           %select#inputTo.form-control
+            %option EUR
             = haml :currency_list, :layout => false, :locals => locals
 .row
   .form-group
     .col-md-offset-1.col-sm-offset-2.col-sm-10
-      %button.btn.btn-default{:type => "submit"} Convert
+      %button.btn.btn-default.convert{:type => "submit"} Convert
 
 .row
   .col-md-offset-1.col-sm-offset-2.col-sm-10
+    %h2.result-field
+      %small
+        %span.amount
+          1
+        %span.from_curr
+          EUR
+        \= 
+      %span.result
+      %small
+        %span.to_curr
+          EUR
