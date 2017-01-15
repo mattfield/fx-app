@@ -2,7 +2,7 @@ require 'json'
 require 'sinatra'
 require 'exchange_rate'
 
-ENV["XML_FEED_PATH"] = 'public/data/feed.xml'
+#ENV["XML_FEED_PATH"] = 'public/data/feed.xml'
 
 def rates_by_date(date = Date.today)
   ExchangeRate.all_rates_at(date = Date.today)
